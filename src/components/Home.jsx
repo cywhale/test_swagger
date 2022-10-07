@@ -1,4 +1,5 @@
 import { useState } from 'preact/hooks'
+import Swagger from './Swagger'
 import './Home.css'
 
 function Home() {
@@ -6,10 +7,12 @@ function Home() {
 
   return (
     <div>
-      <p>
+      <div>
         <button type="button" onClick={() => setCount(count => count + 1)}>count is: {count}
         </button>
-      </p>
+        <hr/><br/>
+      </div>
+      <Swagger />
     </div>
   )
 }

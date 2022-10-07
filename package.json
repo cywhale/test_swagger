@@ -16,7 +16,8 @@
   "dependencies": {
     "history": "^5.3.0",
     "preact": "^10.11.1",
-    "preact-router": "^4.1.0"
+    "preact-router": "^4.1.0",
+    "swagger-ui-react": "^4.14.2"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.4.0",

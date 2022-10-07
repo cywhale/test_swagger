@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Test boolean/enum/... for swagger-ui-react",
+    "title": "Test swagger-ui-react v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://example.com"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/v1/{id}": {
+      "get": {
+        "description": "Test1: boolean",
+        "parameters": [
+          {
+            "description": "test id",
+            "example": 0,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "description": "Test boolean",
+            "example": true,
+            "in": "query",
+            "name": "temporal-aggregation",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Response1"
+          }
+        },
+        "summary": "Test: boolean",
+        "tags": [
+          "test1"
+        ]
+      }
+    },
+    "/v1/test_enum": {
+      "get": {
+        "description": "Test2: enum",
+        "parameters": [
+          {
+            "description": "Test enum",
+            "example": "10days",
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "schema": {
+              "enum": [
+                "10days",
+                "day",
+                "hour"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Response1"
+          }
+        },
+        "summary": "Test: enum",
+        "tags": [
+          "test1"
+        ]
+      }
+    },
+    "/v1/test_ok/{z}": {
+      "get": {
+        "description": "Test ok example",
+        "parameters": [
+          {
+            "description": "level",
+            "example": 0,
+            "in": "path",
+            "name": "z",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "description": "Test number",
+            "example": 10,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "description": "Test string",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Response1"
+          }
+        },  
+        "summary": "Test: ok",
+        "tags": [
+          "test1"
+        ]
+      }
+    }
+  },  
+  "components": {
+    "responses": {
+      "Response1": {
+        "description": "success",
+        "content": {
+          "application/json": {
+            "schema": { 
+              "type": "object",
+              "properties": {
+                "records": {
+                  "description": "Test array",
+                  "items": {
+                    "description": "Test number of array",
+                    "example": [
+                      0,
+                      1,
+                      2,
+                      "…"
+                    ],
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "limit": {
+                  "description": "limit",
+                  "type": "number"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          }      
+        }
+      }    
+    }
+  }
+}

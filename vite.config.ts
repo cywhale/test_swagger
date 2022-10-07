@@ -5,11 +5,10 @@ import replace from '@rollup/plugin-replace'
 import fs from 'fs'
 
 const base = 'swag'
-const isProd = process.env.NODE_ENV === "production"
 
 export default defineConfig({
   base: `/${base}/`,
-  mode: isProd? "production" : "development",
+  mode: "development",
   build: {
     sourcemap: true,
     manifest: true,
