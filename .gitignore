@@ -51,3 +51,4 @@
 **/.yarnrc
 **/dev-dist
 **/cert
+**/test
