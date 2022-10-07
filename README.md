@@ -6,5 +6,5 @@
 
     2. npm start
 
-# /public/test.json, got error (result figs in ./test)
+#### /public/test.json, got error (result figs in ./test)
 
