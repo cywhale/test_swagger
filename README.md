@@ -11,3 +11,9 @@
 #### /public/test.json, got error (result figs in ./test)
 
     issue: https://github.com/swagger-api/swagger-ui/issues/8218
+
+#### Get solved:
+
+    https://github.com/swagger-api/swagger-ui/pull/8231 after swagger-ui-react@4.15.1
+
+
