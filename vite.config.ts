@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import preact from '@preact/preset-vite'
 import replace from '@rollup/plugin-replace'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import fs from 'fs'
 
 const base = 'swag'
@@ -13,11 +14,24 @@ export default defineConfig({
     sourcemap: true,
     manifest: true,
     outDir: resolve(__dirname, `./dist/${base}/`),
+    target: 'esnext',
     emptyOutDir: true,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-      }
+      },
+      output: {
+        format: 'es',
+      },
+      plugins: [
+        nodeResolve({
+          moduleDirectories: ['node_modules']
+        }),
+      ],
+      external: ['lodash'],
     }
   },
   define: {

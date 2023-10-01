@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Test API for swagger-ui-react 5.1.0->5.1.1",
+    "description": "Test swagger-ui-react 5.1.1 swagger 2.0",
+    "version": "1.0.0"
+  },
+  "host": "opendata.cwb.gov.tw",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "basePath": "/api",
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "paths": {
+    "/v1/test02a": {
+      "get": {
+        "summary": "Test02.a",
+        "description": "Test items array",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "description": "items of array cause UI error due to no schema outside items",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ]
+              }
+            }  
+          }
+        ],
+        "tags": [
+          "test02"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/test_ok": {
+      "get": {
+        "summary": "Test02.b",
+        "description": "Test enum ok (fixed)",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "It's ok (no error) if just enum",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "JSON",
+                "XML"
+              ]
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "items of array without enum",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }  
+          }        
+        ],
+        "tags": [
+          "test02"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }    
+  }
+} 
