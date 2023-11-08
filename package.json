@@ -1,10 +1,10 @@
 {
   "name": "test_swagger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "scripts": {
-    "start": "vite --force --port 8080",
-    "preview": "vite preview --port 8080",
+    "start": "vite --force --port 8010",
+    "preview": "vite preview --port 8010",
     "build": "vite build"
   },
   "keywords": [
@@ -17,18 +17,21 @@
   "author": "cywhale",
   "dependencies": {
     "history": "^5.3.0",
-    "preact": "^10.18.1",
+    "preact": "^10.18.2",
+    "preact-async-route": "^2.2.1",
     "preact-router": "^4.1.2",
-    "swagger-ui-react": "^5.6.2"
+    "react-datepicker": "^4.21.0",
+    "react-xarrows": "^2.0.2",
+    "swagger-ui-react": "^5.9.2"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.5.0",
-    "@rollup/plugin-node-resolve": "^15.2.1",
-    "@rollup/plugin-replace": "^5.0.2",
-    "esbuild": "^0.19.4",
+    "@preact/preset-vite": "^2.6.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
+    "esbuild": "^0.19.5",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
     "typescript": "^5.2.2",
-    "vite": "^4.4.9"
+    "vite": "^4.5.0"
   }
 }

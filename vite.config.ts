@@ -31,9 +31,12 @@ export default defineConfig({
           moduleDirectories: ['node_modules']
         }),
       ],
-      external: ['lodash'],
+      //external: ['lodash'],
     }
   },
+  //optimizeDeps: {
+  //  include: ['lodash']
+  //},
   define: {
     'process.env': process.env,
   },
