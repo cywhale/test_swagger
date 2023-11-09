@@ -1,12 +1,12 @@
 # test_swagger
 
-    0. default setting: /swag/, port: 8080, defined in vite.config.ts
+    0. default setting: /swag/, port: 8010, defined in vite.config.ts
     
-    1. npm install
+    1. pnpm install
 
-    2. npm start
+    2. pnpm start
     
-    3. http://localhost:8080/swag/
+    3. http://localhost:8010/swag/
 
 #### /public/test.json, got error (result figs in ./test)
 
@@ -16,4 +16,4 @@
 
     https://github.com/swagger-api/swagger-ui/pull/8231 after swagger-ui-react@4.15.1
 
-
+#### Another issue (enum in array)

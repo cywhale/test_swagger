@@ -1,0 +1,131 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "中央氣象署開放資料平臺之資料擷取API",
+        "description": "提供目前開放資料之擷取API",
+        "version": "1.0.0"
+    },
+    "basePath": "/api",
+    "host": "opendata.cwb.gov.tw",
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "produces": [
+        "application/json",
+        "application/xml"
+    ],
+    "paths": {
+        "/v1/rest/datastore/E-A0014-001": {
+            "get": {
+                "summary": "海嘯資訊資料-海嘯資訊資料",
+                "description": "海嘯資訊資料\n",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "query",
+                        "description": "氣象開放資料平台會員授權碼",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "限制最多回傳的資料，預設為回傳全部筆數",
+                        "required": false,
+                        "type": "number",
+                        "format": "int"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "指定從第幾筆後開始回傳，預設為第 0 筆開始回傳",
+                        "required": false,
+                        "type": "number",
+                        "format": "int"
+                    },
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "description": "回傳資料格式，預設為 json 格式",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "JSON",
+                            "XML"
+                        ]
+                    },
+                    {
+                        "name": "AreaName",
+                        "in": "query",
+                        "description": "區域名稱 ，預設為全部回傳",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "StationName",
+                        "in": "query",
+                        "description": "測站名稱，預設為全部回傳",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortTime",
+                        "in": "query",
+                        "description": "test",
+                        "required": false,
+                        "explode": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                       }
+                    },
+                    {
+                        "name": "OriginTime",
+                        "in": "query",
+                        "description": "時間因子，格式為「yyyy-MM-ddThh:mm:ss」，預設為全部回傳",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$"
+                        }
+                    },
+                    {
+                        "name": "timeFrom",
+                        "in": "query",
+                        "description": "時間區段，篩選需要之時間區段，時間從「timeFrom」開始篩選，直到內容之最後時間，並可與參數 「timeTo」 合併使用，格式為「yyyy-MM-ddThh:mm:ss」，若使用參數「dataTime」，則參數「timeFrom」的篩選資料則會失效 ，預設為全部回傳",
+                        "required": false,
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$"
+                    },
+                    {
+                        "name": "timeTo",
+                        "in": "query",
+                        "description": "時間區段，篩選需要之時間區段，時間從內容之最初時間開始篩選，直到「timeTo」，並可與參數 timeFrom」 合併使用，格式為「yyyy-MM-ddThh:mm:ss」，若使用「dataTime」，則參數「timeTo」的篩選資料則會失效，預設為全部回傳",
+                        "required": false,
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$"
+                    }
+                ],
+                "tags": [
+                    "地震海嘯"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}    

@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/api"
+      "url": "https://opendata.cwb.gov.tw/api"
     }
   ],
   "paths": {

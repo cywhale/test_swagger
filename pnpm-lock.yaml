@@ -15,7 +15,7 @@ dependencies:
     specifier: ^4.1.2
     version: 4.1.2(preact@10.18.2)
   swagger-ui-react:
-    specifier: ^5.9.2
+    specifier: 5.9.2
     version: 5.9.2(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
@@ -41,7 +41,7 @@ devDependencies:
     specifier: ^5.2.2
     version: 5.2.2
   vite:
-    specifier: ^4.5.0
+    specifier: 4.5.0
     version: 4.5.0
 
 packages:
@@ -1184,7 +1184,7 @@ packages:
       '@babel/runtime-corejs3': 7.23.2
       '@swagger-api/apidom-core': 0.83.0
       '@types/ramda': 0.29.8
-      axios: 1.6.0
+      axios: 1.6.1
       minimatch: 7.4.6
       process: 0.11.10
       ramda: 0.29.1
@@ -1307,8 +1307,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /axios@1.6.0:
-    resolution: {integrity: sha512-EZ1DYihju9pwVB+jg67ogm+Tmqc6JmhamRN6I4Zt8DfZu5lbcQGw3ozH9lFejSJgs/ibaef3A9PMXPLeefFGJg==}
+  /axios@1.6.1:
+    resolution: {integrity: sha512-vfBmhDpKafglh0EldBEbVuoe7DyAavGSLWhuSm5ZSEKQnHhBf0xAAwybbNH1IkrJNGnS/VG4I5yxig1pCEXE4g==}
     dependencies:
       follow-redirects: 1.15.3
       form-data: 4.0.0
