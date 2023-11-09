@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "中央氣象署開放資料平臺之資料擷取API",
+    "title": "Test API: OAS by swagger editor, delete enum in array",
     "description": "提供目前開放資料之擷取API",
     "version": "1.0.0"
   },

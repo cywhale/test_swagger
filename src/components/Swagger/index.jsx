@@ -11,8 +11,7 @@ const SwagX = (props) => (
 )
 
 const Swagger = (props) => {
-  const url = '/public/test04_04_tryerr.json' //test04_02_noDatetime.json //test04_03_noEnum.json
-              //'https://api.odb.ntu.edu.tw/search/schema?node=odb_v1_ctd_sadcp_bio_202210&num=1'
+  const url = '/public/test04_04_tryerr.json' //test04_04_delOneEnum.json
   return(
     <Suspense fallback={<Loading />}>
         <SwagX url={url} />
