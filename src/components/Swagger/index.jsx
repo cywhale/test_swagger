@@ -1,4 +1,5 @@
 import "swagger-ui-react/swagger-ui.css"
+//import "swagger-ui-react/dist/swagger-ui.css"
 import { Suspense, lazy, memo } from 'preact/compat'  //test dynamic loading
 
 const SwaggerUI = lazy(() => import('swagger-ui-react'))
@@ -11,7 +12,8 @@ const SwagX = (props) => (
 )
 
 const Swagger = (props) => {
-  const url = '/public/test04_04_tryerr.json' //test04_04_delOneEnum.json
+  const url = '/public/test04_04_tryerr.json'
+              //'/public/test04_04_delOneEnum.json'
   return(
     <Suspense fallback={<Loading />}>
         <SwagX url={url} />

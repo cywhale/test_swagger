@@ -3,9 +3,14 @@ import { createBrowserHistory } from 'history'
 import Home from './components/Home'
 
 import './App.css'
+
 const date = '__DATE__'
 const base = '__ROUTE__'
 const baseurl = `/${base}`
+
+if (typeof window !== "undefined") {
+    window.global = window;
+}
 
 const history = createBrowserHistory({
     basename: `${base}/`
