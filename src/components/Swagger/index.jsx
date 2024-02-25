@@ -12,8 +12,8 @@ const SwagX = (props) => (
 )
 
 const Swagger = (props) => {
-  const url = '/public/test04_04_tryerr.json'
-              //'/public/test04_04_delOneEnum.json'
+  const basePath = import.meta.env.BASE_URL
+  const url = `${basePath}test04_04_tryerr.json` //'/public/test04_04_tryerr.json' //test04_04_delOneEnum.json
   return(
     <Suspense fallback={<Loading />}>
         <SwagX url={url} />
