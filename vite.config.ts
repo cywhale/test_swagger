@@ -72,7 +72,7 @@ export default defineConfig({
           } else if (id.includes('url-parse')) {
             return 'url-parse'
           //} else if (id.includes('redux')) {
-          //  return 'redux'
+          //  return 'redux' //casue ReferenceError: can't access lexical declaration "require$$0" before initialization
           } else if (id.includes('zenscroll')) {
             return 'zenscroll'
           } else if (id.includes('reselect')) {
@@ -95,8 +95,6 @@ export default defineConfig({
             return 'dompurify'
           } else if (id.includes('remarkable')) {
             return 'remarkable'
-          //if (id.includes('swagger-api')) {
-            //return 'swagger-api'
           } else if (id.includes('swagger-client') || id.includes('swagger-api')) {
             return 'swagger-client'
           } else if (id.includes('swaggeri-ui-react')) {
