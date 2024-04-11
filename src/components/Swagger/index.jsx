@@ -5,11 +5,13 @@ import { Suspense, lazy, memo } from 'preact/compat'  //test dynamic loading
 const SwaggerUI = lazy(() => import('swagger-ui-react'))
 const Loading = () => <p>Loading...</p>
 
-const SwagX = (props) => (
+const SwagX = (props) => {
+  return(
     <div id="swagger-container">
       <SwaggerUI {...props} />
     </div>
-)
+  )
+}
 
 const Swagger = (props) => {
   const basePath = import.meta.env.BASE_URL
