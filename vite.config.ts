@@ -1,4 +1,8 @@
+//import { createRequire } from 'node:module'
+//const require = createRequire( import.meta.url )
 import { defineConfig } from 'vite' //Plugin
+//import builtins from 'rollup-plugin-node-builtins'
+//import globals from 'rollup-plugin-node-globals'
 import { resolve } from 'path'
 import preact from '@preact/preset-vite'
 //import react from '@vitejs/plugin-react'
@@ -9,6 +13,7 @@ import { SplitVendorChunkCache, staticImportedByEntry } from './config/splitvend
 import fs from 'fs'
 
 const base = 'swag'
+const isProd = process.env.NODE_ENV === "production"
 //const swagPkg = ['react-immutable-pure-component', 'react-debounce-input', 'react-copy-to-clipboard',
 //                 'react-syntax-highlighter', 'react-redux']
 /*
@@ -29,6 +34,32 @@ function reactResolverForSwaggerUI(): Plugin {
   }
 }
 */
+/*
+const builtinsPlugin = {
+  ...builtins({ crypto: true }),
+  name: "builtins",
+}
+const globalsPlugin = {
+  ...globals(),
+  name: "globals",
+}
+*/
+var global_define = isProd? {
+      'process.env': process.env,
+      //'process': JSON.stringify({
+      //  env: process.env,
+      //  platform: 'browser',
+      //}),
+    }: {
+      global: {},
+      'process.env': process.env,
+      //'process': JSON.stringify({
+      //  env: process.env,
+      //  platform: 'browser',
+      //}),
+    }
+
+
 export default defineConfig({
   base: `/${base}/`,
   mode: "development",
@@ -52,6 +83,8 @@ export default defineConfig({
         nodeResolve({
           moduleDirectories: ['node_modules']
         }),
+        //globals(),
+        //builtins(),
       ],
       //external: swagPkg,
       treeshake: {
@@ -129,15 +162,16 @@ export default defineConfig({
   //optimizeDeps: {
   //  exclude: swagPkg
   //},
-  define: {
-    _global: ({}), //https://stackoverflow.com/questions/75925195/how-to-fix-vite-build-syntax-error-unexpected-token-in-third-party-dependenc
-    'process.env': process.env,
+  define: { ...global_define,
+    //_global: ({}), //https://stackoverflow.com/questions/75925195/how-to-fix-vite-build-syntax-error-unexpected-token-in-third-party-dependenc
+    //'process.env': process.env,
   },
   resolve: {
     extensions: ['.js', '.jsx', 'ts', 'tsx'],
     mainFields: ['module'],
     alias: {
       "@": resolve(__dirname, "src"),
+      //fs: require.resolve('rollup-plugin-node-builtins'),
       //"swagger-ui-react/react": "react",
       //"swagger-ui-react/react-dom": "react-dom",
       "react": "preact/compat",
@@ -153,6 +187,8 @@ export default defineConfig({
         plugins: ["macros"],
       },
     }),
+    //builtinsPlugin,
+    //globalsPlugin,
     //reactResolverForSwaggerUI(),
     /* react({
       babel: {

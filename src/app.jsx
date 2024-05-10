@@ -39,8 +39,51 @@ export function App() {
         isImmutableStructure(vnode.props.allowedValues)) {
       vnode.props.allowedValues = convertToPlainStructure(vnode.props.allowedValues)
     }
+    // Handle Immutable.js structures for specific component types
+    if (typeof vnode.type === 'string') {
+      if (vnode.props.children && isImmutableStructure(vnode.props.children)) {
+        vnode.props.children = convertToPlainStructure(vnode.props.children)
+      } else if (Array.isArray(vnode.props.children)) {
+        vnode.props.children = vnode.props.children.map(child => {
+          if (isImmutableStructure(child)) {
+            return convertToPlainStructure(child)
+          }
+          return child
+        })
+      }
+      // Ensure all vnodes have a DOM node
+      if (!vnode._dom) {
+        vnode._dom = document.createElement(vnode.type)
+      }
+    }
+
+    if (vnode.type === 'button' && vnode.props && vnode.props.onClick) {
+      const originalClick = vnode.props.onClick
+      if (!vnode._dom) {
+        vnode._dom = document.createElement(vnode.type)
+      }
+
+      vnode.props.onClick = (event) => { //async
+        originalClick && originalClick(event)
+        //try {
+        //  await originalClick(event)
+        //} catch (error) {
+        //  console.error("Error during button click handler:", error)
+        //}
+      }
+    }
 
     if (oldVNode) oldVNode(vnode)
+  }
+
+  // Override the `insertBefore` method to catch insertion errors
+  const originalInsertBefore = Node.prototype.insertBefore
+  Node.prototype.insertBefore = function (newNode, referenceNode) {
+    if (!(newNode instanceof Node)) {
+      console.error("Invalid node being inserted:", newNode)
+      return null
+    }
+    return originalInsertBefore.call(this, newNode, referenceNode)
   }
 
   // Helper function to detect if a value is an Immutable.js structure
@@ -56,6 +99,11 @@ export function App() {
     if (typeof immutableStructure.toArray === 'function') {
       return immutableStructure.toArray()
     }
+
+    if (typeof immutableStructure.toJS === 'function') {
+      return immutableStructure.toJS()
+    }
+
     // Add other conversion logic here if needed
     return immutableStructure // Fallback to return the original structure if no conversion is applied
   }
