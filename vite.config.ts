@@ -2,15 +2,17 @@
 //const require = createRequire( import.meta.url )
 import { defineConfig } from 'vite' //Plugin
 //import builtins from 'rollup-plugin-node-builtins'
-//import globals from 'rollup-plugin-node-globals'
+//import globals from 'rollup-plugin-node-globals' //cause vite build crash
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import { resolve } from 'path'
 import preact from '@preact/preset-vite'
 //import react from '@vitejs/plugin-react'
 import replace from '@rollup/plugin-replace'
 //import externalize from "vite-plugin-externalize-dependencies"
+import compression from "vite-plugin-compression";
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { SplitVendorChunkCache, staticImportedByEntry } from './config/splitvendorchunk.js'
-import fs from 'fs'
+//import fs from 'fs'
 
 const base = 'swag'
 const isProd = process.env.NODE_ENV === "production"
@@ -45,7 +47,8 @@ const globalsPlugin = {
 }
 */
 var global_define = isProd? {
-      'process.env': process.env,
+      //'process.env': process.env,
+      //global: {},
       //'process': JSON.stringify({
       //  env: process.env,
       //  platform: 'browser',
@@ -126,6 +129,12 @@ export default defineConfig({
             return 'ieee754'
           } else if (id.includes('dompurify')) {
             return 'dompurify'
+          } else if (id.includes('memfs')) {
+            return 'memfs'
+          } else if (id.includes('web-streams-polyfill')) {
+            return 'web-streams-polyfill'
+          } else if (id.includes('node-fetch-commonjs')) {
+            return 'node-fetch-commonjs'
           } else if (id.includes('remarkable')) {
             return 'remarkable'
           } else if (id.includes('swagger-client') || id.includes('swagger-api')) {
@@ -172,6 +181,9 @@ export default defineConfig({
     alias: {
       "@": resolve(__dirname, "src"),
       //fs: require.resolve('rollup-plugin-node-builtins'),
+      'fs': 'memfs',
+      //'util': 'browserify/lib/util.js', //'@browsery/util', //'util/',
+      'stream': 'stream-browserify',
       //"swagger-ui-react/react": "react",
       //"swagger-ui-react/react-dom": "react-dom",
       "react": "preact/compat",
@@ -187,7 +199,35 @@ export default defineConfig({
         plugins: ["macros"],
       },
     }),
-    //builtinsPlugin,
+    nodePolyfills({
+      // To add only specific polyfills, add them here. If no option is passed, adds all polyfills
+      include: ['util', 'path', 'process'],
+      // To exclude specific polyfills, add them to this list. Note: if include is provided, this has no effect
+      exclude: [
+        'http', // Excludes the polyfill for `http` and `node:http`.
+      ],
+      // Whether to polyfill specific globals.
+      globals: {
+        Buffer: true, // can also be 'build', 'dev', or false
+        global: true,
+        process: true,
+        util: true,
+      },
+      // Override the default polyfills for specific modules.
+      overrides: {
+        // Since `fs` is not supported in browsers, we can use the `memfs` package to polyfill it.
+        fs: 'memfs',
+        //'util': 'util/',
+        stream: 'stream-browserify',
+      },
+      // Whether to polyfill `node:` protocol imports.
+      //protocolImports: true,
+    }),    //builtinsPlugin,
+    compression({
+      algorithm: ["brotliCompress"],
+      deleteOriginalFile: false,
+      ext: ".br",
+    }),
     //globalsPlugin,
     //reactResolverForSwaggerUI(),
     /* react({
