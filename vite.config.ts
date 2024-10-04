@@ -221,7 +221,7 @@ export default defineConfig({
         stream: 'stream-browserify',
       },
       // Whether to polyfill `node:` protocol imports.
-      //protocolImports: true,
+      protocolImports: false, //true,
     }),    //builtinsPlugin,
     compression({
       algorithm: ["brotliCompress"],
