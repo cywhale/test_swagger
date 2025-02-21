@@ -1,6 +1,6 @@
 import "swagger-ui-react/swagger-ui.css"
 //import SwaggerUI from 'swagger-ui-react'
-import DatePicker from "react-datepicker"
+//import DatePicker from "react-datepicker"
 import { Suspense, lazy, memo } from 'preact/compat'  //test dynamic loading
 
 const base = '__ROUTE__'
@@ -14,7 +14,7 @@ const SwagX = (props) => (
       <SwaggerUI {...props} />
     </div>
 )
-
+/* Plugin works, but date-output format not correct, should be yyyy-mm-ddTHH:MM:SS
 // https://gist.github.com/s-bauer/7ecfaf62c24a17c6a92c8599f414de37#file-app-js-L16
 const JsonSchema_string_date = (props) => {
   const dateNumber = Date.parse(props.value);
@@ -60,11 +60,11 @@ const JsonSchema_string_date_time = (props) => {
     />
   )
 }
-
+*/
 const Swagger = (props) => {
   const url = `${baseurl}/test04_03_noEnum.json`
               //'https://api.odb.ntu.edu.tw/search/schema?node=odb_v1_ctd_sadcp_bio_202210&num=1'
-  const DateTimeSwaggerPlugin = {
+/*const DateTimeSwaggerPlugin = {
     components: {
       "JsonSchema_string_time": JsonSchema_string_time,
       "JsonSchema_string_date": JsonSchema_string_date,
@@ -72,9 +72,12 @@ const Swagger = (props) => {
     }
   }
 
+        <SwagX url={url} plugins={[DateTimeSwaggerPlugin]} />
+        <SwagX url={url} syntaxHighlight={{activated: false}} />
+*/
   return(
     <Suspense fallback={<Loading />}>
-        <SwagX url={url} plugins={[DateTimeSwaggerPlugin]} />
+        <SwagX url={url} />
     </Suspense>
   )
 }

@@ -177,12 +177,12 @@ export default defineConfig({
   },
   resolve: {
     extensions: ['.js', '.jsx', 'ts', 'tsx'],
-    mainFields: ['module'],
+    mainFields: ['browser', 'module'],
     alias: {
       "@": resolve(__dirname, "src"),
       //fs: require.resolve('rollup-plugin-node-builtins'),
       'fs': 'memfs',
-      //'util': 'browserify/lib/util.js', //'@browsery/util', //'util/',
+      //'util': 'util/', //'browserify/lib/util.js', //'@browsery/util', //'util/',
       'stream': 'stream-browserify',
       //"swagger-ui-react/react": "react",
       //"swagger-ui-react/react-dom": "react-dom",

@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/api"
+      "url": "https://opendata.cwa.gov.tw/api"
     }
   ],
   "paths": {
